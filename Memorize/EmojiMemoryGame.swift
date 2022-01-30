@@ -15,9 +15,9 @@ import SwiftUI
 
 class EmojiMemoryGame: ObservableObject { //"ObservableObject can tell the world: "something changed" | EmojiMemoryGame acts like an ObservableObject"
     
-    static let emojis = ["😐","😡","🥶","😱","🤡", "🤬","🤯","🤑","👺","🤖"] // estar fora da classe faz com que emojis seja uma variavel global e variáveis globais não são tão desejadas, por isso foi colocada dentro da classe com o parâmetro "static" para que passe a se chamar "EmojiMemoryGame.emojis" uma type variable
+    private static let emojis = ["😐","😡","🥶","😱","🤡", "🤬","🤯","🤑","👺","🤖"] // estar fora da classe faz com que emojis seja uma variavel global e variáveis globais não são tão desejadas, por isso foi colocada dentro da classe com o parâmetro "static" para que passe a se chamar "EmojiMemoryGame.emojis" uma type variable
     
-    static func createMemoryGame() -> MemoryGame<String> { // a função createMemoryGame retorna o parâmetro MemoryGame<String>
+    private static func createMemoryGame() -> MemoryGame<String> { // a função createMemoryGame retorna o parâmetro MemoryGame<String>
         MemoryGame<String>(numberOfPairsOfCards: 6) { pairIndex in   // o parâmetro "static" faz com a função "createMemoryGame" se torne uma função local de nome "EmojiMemoryGame.createMemoryGame" uma type function
             emojis[pairIndex]
         }
@@ -33,7 +33,7 @@ class EmojiMemoryGame: ObservableObject { //"ObservableObject can tell the world
     //MARK: - Intent(s)
     
     func choose(_ card: MemoryGame<String>.Card) {
-//        objectWillChange.send() // thats not necessaire anymore bc we've used @Pubished
+        //        objectWillChange.send() // thats not necessaire anymore bc we've used @Pubished
         model.choose(card)
     }
 }

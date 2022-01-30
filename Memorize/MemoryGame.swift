@@ -12,10 +12,10 @@ struct MemoryGame<CardContent> where CardContent: Equatable { //<> to show the w
     private(set) var cards: Array<Card>
     
     private var indexOfTheOneAndOnlyFaceUpCard: Int? //optional
-
+    
     mutating func choose(_ card: Card) { // tells the worls that calling this function is going to change it
-//        print("hello") // every time someone tap a card "hello" will be printed on console
-//        if let chosenIndex = index(of: card) { -> old code
+        //        print("hello") // every time someone tap a card "hello" will be printed on console
+        //        if let chosenIndex = index(of: card) { -> old code
         if let chosenIndex = cards.firstIndex(where: { $0.id == card.id }),
            !cards[chosenIndex].isFaceUp,
            !cards[chosenIndex].isMatched {
@@ -33,7 +33,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable { //<> to show the w
             }
             cards[chosenIndex].isFaceUp.toggle()
         }
-//        print("\(cards)")
+        //        print("\(cards)")
     }
     
     init(numberOfPairsOfCards: Int, createCardContent: (Int) -> CardContent) {  // createCardContent now is a argument for this function
@@ -49,7 +49,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable { //<> to show the w
     struct Card: Identifiable {
         var isFaceUp: Bool = false
         var isMatched: Bool = false
-        var content: CardContent // a don't care type
-        var id: Int
+        let content: CardContent // a don't care type
+        let id: Int
     }
 }
