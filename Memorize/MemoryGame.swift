@@ -13,8 +13,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable { //<> to show the w
     
     private var indexOfTheOneAndOnlyFaceUpCard: Int? { // we gonna compute it from line 12 -> cards: Array<Card> by looking them all
         get{
-            let faceUpCardIndices = cards.indices.filter({cards [$0].isFaceUp})
-            return faceUpCardIndices.oneAndOnly
+            cards.indices.filter({cards [$0].isFaceUp}).oneAndOnly
         }
         set {
             for index in cards.indices{ // 0..<cards.count foi substituido por cards.indices
