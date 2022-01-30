@@ -13,7 +13,7 @@ struct MemorizeApp: App {
     // that let game = EmojiMemoryGame() can be placed bc that let will point to EmojiMemoryGame, bc it's a class.
     var body: some Scene {
         WindowGroup {
-            EmojiMemoryGameView(viewModel: game)
+            EmojiMemoryGameView(game: game)
         }
     }
 }

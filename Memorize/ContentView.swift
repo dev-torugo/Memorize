@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct EmojiMemoryGameView: View {
-    @ObservedObject var viewModel: EmojiMemoryGame // that @ObservedObject means that when this says something change, rebuild my entire body
+    @ObservedObject var game: EmojiMemoryGame // that @ObservedObject means that when this says something change, rebuild my entire body
     
     var body: some View {
         ScrollView{
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 75))]) {
-                ForEach(viewModel.cards) { card in
+                ForEach(game.cards) { card in
                     CardView(card: card)
                         .aspectRatio(2/3, contentMode: .fit)
                         .onTapGesture{
-                            viewModel.choose(card)
+                            game.choose(card)
                         }
                 }
             }
@@ -58,9 +58,9 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let game = EmojiMemoryGame()
         
-        EmojiMemoryGameView(viewModel: game)
+        EmojiMemoryGameView(game: game)
             .preferredColorScheme(.light)
-        EmojiMemoryGameView(viewModel: game)
+        EmojiMemoryGameView(game: game)
             .preferredColorScheme(.dark)
     }
 }
