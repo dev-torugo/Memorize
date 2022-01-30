@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct MemorizeApp: App {
+    let game = EmojiMemoryGame() // i only can do this because class is "free-init", that free-init is "do nothing", that doesn't initialize vars
+    // that let game = EmojiMemoryGame() can be placed bc that let will point to EmojiMemoryGame, bc it's a class.
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: game)
         }
     }
 }
