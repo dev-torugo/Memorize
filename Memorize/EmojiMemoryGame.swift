@@ -14,7 +14,7 @@ import SwiftUI
 
 
 class EmojiMemoryGame: ObservableObject { //"ObservableObject can tell the world: "something changed" | EmojiMemoryGame acts like an ObservableObject"
-    typealias Card = MemoryGame<String>.Card
+    typealias Card = MemoryGame<String>.Card // typealias limpa o codigo transformando MemoryGame<String>.Card em apenas Card.
     
     private static let emojis = ["😐","😡","🥶","😱","🤡", "🤬","🤯","🤑","👺","🤖"] // estar fora da classe faz com que emojis seja uma variavel global e variáveis globais não são tão desejadas, por isso foi colocada dentro da classe com o parâmetro "static" para que passe a se chamar "EmojiMemoryGame.emojis" uma type variable
     
@@ -24,8 +24,9 @@ class EmojiMemoryGame: ObservableObject { //"ObservableObject can tell the world
         }
     }
     
-    @Published private var model: MemoryGame<String> = createMemoryGame()// private make only the ViewModel see that model | private(set) tells swift taht other classes can only look/read the model, they cant change it
+    @Published private var model = createMemoryGame()   // private make only the ViewModel see that model | private(set) tells swift taht other classes can only look/read the model, they cant change it
     // that function call can only be used during inicialization or  if you're already in a static func and you're accessing another static. Otherwise, you'll need to use the func fullname: "EmojiMemoryGame.func"
+//    : MemoryGame<String> was removed because swift can se we declaring it previously
     
     var cards: Array<Card> {
         model.cards

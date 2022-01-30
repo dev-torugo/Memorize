@@ -28,7 +28,10 @@ struct EmojiMemoryGameView: View {
 }
 
 struct CardView: View { //dineroom chair -> replicate the cards | the cards will be equal 
-    let card: MemoryGame<String>.Card // that pass only a small part of the model
+    let card: EmojiMemoryGame.Card // that pass only a small part of the model
+    
+//    init (_ card: EmojiMemoryGame.Card){ // that init allows the 17 line set.
+//        self.card = card // self.card -> that mean the 31 line card. green matches green and black/black
     
     var body: some View{
         ZStack { // acumulou cartas no eixo Z
@@ -54,7 +57,7 @@ struct CardView: View { //dineroom chair -> replicate the cards | the cards will
 
 
 
-struct ContentView_Previews: PreviewProvider {
+struct EmojiMemoryGameView_Previews: PreviewProvider {
     static var previews: some View {
         let game = EmojiMemoryGame()
         
