@@ -12,7 +12,7 @@ struct EmojiMemoryGameView: View {
     
     var body: some View {
         ScrollView{
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 75))]) {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))]) {
                 ForEach(game.cards) { card in
                     CardView(card: card)
                         .aspectRatio(2/3, contentMode: .fit)
@@ -33,23 +33,34 @@ struct CardView: View { //dineroom chair -> replicate the cards | the cards will
 //    init (_ card: EmojiMemoryGame.Card){ // that init allows the 17 line set.
 //        self.card = card // self.card -> that mean the 31 line card. green matches green and black/black
     
-    var body: some View{
-        ZStack { // acumulou cartas no eixo Z
-            let shape = RoundedRectangle(cornerRadius: 30)
-            
-            if card.isFaceUp{
-                shape.fill(.white)
-                shape.strokeBorder(lineWidth: 3)
-                Text(card.content).font(.largeTitle)
-            } else if card.isMatched{
-                shape.opacity(0)
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack { // acumulou cartas no eixo Z
+                let shape = RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
                 
-            } else {
-                shape.fill()
-                
+                if card.isFaceUp{
+                    shape.fill(.white)
+                    shape.strokeBorder(lineWidth: DrawingConstants.lineWidth)
+                    Text(card.content)
+                        .font(font(in: geometry.size))
+                } else if card.isMatched{
+                    shape.opacity(0)
+                } else {
+                    shape.fill()
+                }
             }
-            
         }
+    }
+    
+    private func font (in size: CGSize) -> Font {
+        Font.system(size: min(size.width, size.height) * DrawingConstants.fontScale)
+    }
+    
+    
+    private struct DrawingConstants {
+        static let cornerRadius: CGFloat = 20
+        static let lineWidth: CGFloat = 3
+        static let fontScale: CGFloat = 0.8
     }
 }
 
