@@ -8,8 +8,7 @@
 
 import SwiftUI
 
-struct AspectVGrid<Item,ItemView>: View where ItemView: View {
-    
+struct AspectVGrid<Item, ItemView>: View where ItemView: View {
     var items: [Item] // a dont care
     var aspectRatio: CGFloat
     var content: (Item) -> ItemView
