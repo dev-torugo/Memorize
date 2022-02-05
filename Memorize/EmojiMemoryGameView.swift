@@ -11,17 +11,20 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var game: EmojiMemoryGame // that @ObservedObject means that when this says something change, rebuild my entire body
     
     var body: some View {
-        ScrollView{
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))]) {
-                ForEach(game.cards) { card in
-                    CardView(card: card)
-                        .aspectRatio(2/3, contentMode: .fit)
-                        .onTapGesture{
-                            game.choose(card)
-                        }
-                }
+//        ScrollView{
+//            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))]) {
+//                ForEach(game.cards) { card in
+        AspectVGrid(items: game.cards, aspectRatio: 2/3, content: { card in
+            CardView(card: card)
+                .aspectRatio(2/3, contentMode: .fit)
+                .onTapGesture{
+                game.choose(card)
             }
-        }
+        } )
+                    
+//                }
+//            }
+//        }
         .foregroundColor(.blue)
         .padding(.horizontal)
     }
