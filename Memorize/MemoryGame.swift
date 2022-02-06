@@ -14,7 +14,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable { //<> to show the w
     private var indexOfTheOneAndOnlyFaceUpCard: Int? { // we gonna compute it from line 12 -> cards: Array<Card> by looking them all
         get {cards.indices.filter { cards [$0].isFaceUp }.oneAndOnly }
         set { cards.indices.forEach { cards[$0].isFaceUp = ($0 == newValue) } }
-        }
+    }
     
     mutating func choose(_ card: Card) { // tells the worls that calling this function is going to change it
         //        print("hello") // every time someone tap a card "hello" will be printed on console

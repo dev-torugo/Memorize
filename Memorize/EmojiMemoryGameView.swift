@@ -11,19 +11,12 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var game: EmojiMemoryGame // that @ObservedObject means that when this says something change, rebuild my entire body
     
     var body: some View {
-//        ScrollView{
-//            LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))]) {
-//                ForEach(game.cards) { card in
         
         AspectVGrid(items: game.cards, aspectRatio: 2/3, content: { card in
             cardView(for: card)
-            })
-                    
-//                }
-//            }
-//        }
-        .foregroundColor(.blue)
-        .padding(.horizontal)
+        })
+            .foregroundColor(.blue)
+            .padding(.horizontal)
     }
     @ViewBuilder
     private func cardView(for card: EmojiMemoryGame.Card) -> some View {
@@ -35,15 +28,15 @@ struct EmojiMemoryGameView: View {
                 .onTapGesture{
                     game.choose(card)
                 }
-            }
+        }
     }
 }
 
 struct CardView: View { //dineroom chair -> replicate the cards | the cards will be equal 
     let card: EmojiMemoryGame.Card // that pass only a small part of the model
     
-//    init (_ card: EmojiMemoryGame.Card){ // that init allows the 17 line set.
-//        self.card = card // self.card -> that mean the 31 line card. green matches green and black/black
+    //    init (_ card: EmojiMemoryGame.Card){ // that init allows the 17 line set.
+    //        self.card = card // self.card -> that mean the 31 line card. green matches green and black/black
     
     var body: some View {
         GeometryReader { geometry in

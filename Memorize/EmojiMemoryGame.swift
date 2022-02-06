@@ -26,7 +26,7 @@ class EmojiMemoryGame: ObservableObject { //"ObservableObject can tell the world
     
     @Published private var model = createMemoryGame()   // private make only the ViewModel see that model | private(set) tells swift taht other classes can only look/read the model, they cant change it
     // that function call can only be used during inicialization or  if you're already in a static func and you're accessing another static. Otherwise, you'll need to use the func fullname: "EmojiMemoryGame.func"
-//    : MemoryGame<String> was removed because swift can se we declaring it previously
+    //    : MemoryGame<String> was removed because swift can se we declaring it previously
     
     var cards: Array<Card> {
         model.cards
