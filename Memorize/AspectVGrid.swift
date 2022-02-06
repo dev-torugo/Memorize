@@ -13,7 +13,11 @@ struct AspectVGrid<Item, ItemView>: View where ItemView: View, Item: Identifiabl
     var aspectRatio: CGFloat
     var content: (Item) -> ItemView
     
-    
+    init(items: [Item], aspectRatio: CGFloat, @ViewBuilder content: @escaping (Item) -> ItemView) { // @ViewBuilder -> compiler knows that func is a ViewBuilder | @escaping -> compiler knows to holdon in that func
+        self.items = items
+        self.aspectRatio = aspectRatio
+        self.content = content
+    }
     var body: some View {
         GeometryReader { geometry in
             VStack{ // making the GeometryReader flexible

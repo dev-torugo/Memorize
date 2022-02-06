@@ -16,7 +16,7 @@ import SwiftUI
 class EmojiMemoryGame: ObservableObject { //"ObservableObject can tell the world: "something changed" | EmojiMemoryGame acts like an ObservableObject"
     typealias Card = MemoryGame<String>.Card // typealias limpa o codigo transformando MemoryGame<String>.Card em apenas Card.
     
-    private static let emojis = ["😐","😡","🥶","😱","🤡", "🤬","🤯","🤑","👺","🤖"] // estar fora da classe faz com que emojis seja uma variavel global e variáveis globais não são tão desejadas, por isso foi colocada dentro da classe com o parâmetro "static" para que passe a se chamar "EmojiMemoryGame.emojis" uma type variable
+    private static let emojis = ["😐","😡","🥶","😱","🤡", "🤬","🤯","🤑","👺","🤖","😭","🙃","😛","😖"] // estar fora da classe faz com que emojis seja uma variavel global e variáveis globais não são tão desejadas, por isso foi colocada dentro da classe com o parâmetro "static" para que passe a se chamar "EmojiMemoryGame.emojis" uma type variable
     
     private static func createMemoryGame() -> MemoryGame<String> { // a função createMemoryGame retorna o parâmetro MemoryGame<String>
         MemoryGame<String>(numberOfPairsOfCards: 6) { pairIndex in   // o parâmetro "static" faz com a função "createMemoryGame" se torne uma função local de nome "EmojiMemoryGame.createMemoryGame" uma type function
