@@ -1,5 +1,6 @@
 //
-//  EmojiMemoryGameView.swift
+//  EmojiMemoryGameView.swift                          
+//
 //  Memorize
 //
 //  Created by Victor Hugo Augusto Oliveira on 22/01/22.
@@ -41,19 +42,12 @@ struct CardView: View { //dineroom chair -> replicate the cards | the cards will
     var body: some View {
         GeometryReader { geometry in
             ZStack { // acumulou cartas no eixo Z
-                let shape = RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
-                
-                if card.isFaceUp{
-                    shape.fill(.white)
-                    shape.strokeBorder(lineWidth: DrawingConstants.lineWidth)
-                    Text(card.content)
-                        .font(font(in: geometry.size))
-                } else if card.isMatched{
-                    shape.opacity(0)
-                } else {
-                    shape.fill()
-                }
+                Pie(startAngle: Angle(degrees: -90), endAngle: Angle(degrees: 20)) // that way bc the plane is upside-down
+                    .padding(8).opacity(0.4)
+                Text(card.content)
+                    .font(font(in: geometry.size))
             }
+            .cardify(isFaceUp: card.isFaceUp)
         }
     }
     
@@ -63,8 +57,6 @@ struct CardView: View { //dineroom chair -> replicate the cards | the cards will
     
     
     private struct DrawingConstants {
-        static let cornerRadius: CGFloat = 10
-        static let lineWidth: CGFloat = 3
         static let fontScale: CGFloat = 0.7
     }
 }
